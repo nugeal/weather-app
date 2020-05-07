@@ -1,12 +1,23 @@
 import React from 'react';
-import logo from '../logo.svg';
-import { Container, Header } from 'semantic-ui-react'
+import moment from 'moment';
+import { Container, Header, Grid, GridRow } from 'semantic-ui-react';
+import '../css/App.css';
 
 function App() {
+
+const getCurrentDate = () => {
+  return moment().format("dddd, MMMM Do YYYY, h:mm:ss a");
+}
+
   return (
     <div className="App">
       <Container fluid>
-        <Header as='h1' textAlign='center'>Weather Forecast</Header>
+      <Header id='headerTitle' as='h1' textAlign='center'>Weather Forecast</Header>
+          <Grid container columns={1} textAlign='center'>
+            <GridRow>
+              <p id='currentDate'>{ getCurrentDate() }</p>
+            </GridRow>  
+          </Grid>
       </Container>
     </div>
   );
