@@ -1,6 +1,5 @@
 import React from 'react';
 import { mount } from 'enzyme';
-import { Button } from 'semantic-ui-react';
 import SearchForm from '../components/SearchForm';
 
 let wrapper;
