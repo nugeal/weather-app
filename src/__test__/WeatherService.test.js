@@ -1,3 +1,4 @@
+import React from 'react';
 import requestWeatherData from '../services/WeatherService';
 import axios from 'axios';
 

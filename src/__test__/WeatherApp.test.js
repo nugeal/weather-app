@@ -1,11 +1,11 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import App from '../components/App';
+import WeatherApp from '../components/WeatherApp';
 
 let wrapper;
 
 beforeEach(() => {
-  wrapper = shallow(<App />);
+  wrapper = shallow(<WeatherApp />);
 });
 
 it('renders without crashing', () => {
