@@ -1,65 +1,66 @@
-import React, { Component } from 'react'
-import { Form, Input, Select } from 'semantic-ui-react'
+import React, { useState } from 'react'
+import PropTypes from 'prop-types'
+import { Form, Input, Select, Button } from 'semantic-ui-react'
 
 const options = [
     { key: 'i', text: 'Imperial', value: 'imperial' },
     { key: 'm', text: 'Metric', value: 'metric' }
   ]
 
-class SearchForm extends Component {
-    constructor(props){
-      super(props);
-      this.state = {
-        zipcode: '',
-        units: 'imperial'
-      }
-      this.handleChange = this.handleChange.bind(this);
-    }
-  
-    handleChange = (e,  {name, value}) => {
-      this.setState({ [name]: value });
-    }
+const SearchForm = (props) => {
 
-    validZipCode = () => {
-        let zipcode = this.state.zipcode;
-        let pattern = /[0-9]{5}/;
-        if(this.state.zipcode.length === 5 && pattern.test(zipcode)){
-          return true;
-        } else return false;
-    }
-  
-    render() {
-      return (
-        <Form>
-          <Form.Group>
-            <Form.Field 
-              inline
-              required
-              error={ !this.validZipCode() && this.state.zipcode.trim().length > 0 ? true : false}>
-                <label>Zip Code</label>
-                <Input
-                  name='zipcode'
-                  placeholder='5 digit Zip Code'
-                  value={this.state.zipcode}
-                  onChange={this.handleChange}
-                />
-            </Form.Field>
-            <Form.Field inline>
-              <label>Units</label>
-              <Select
-                id='unitsField'
-                name='units'
-                value={this.state.units}
-                options={options}
-                placeholder='Units'
-                onChange={this.handleChange}
-              />
-            </Form.Field>
-            <Form.Button content='Get Weather' disabled={!this.validZipCode() || this.state.zipcode.length === 0 ? true : false}/>
-          </Form.Group>
-        </Form>
-      )
-    }
+  const [fields, setFields] = useState({ zipcode: '', units: 'imperial'});
+
+  const handleChange = (e,  {name, value}) => {
+    setFields(fields => ({ ...fields, [name]: value }));
+  }
+
+  const handleSubmit = () => {
+    props.getWeatherData(fields);
+  }
+
+  const validZipCode = () => {
+    let zipcode = fields.zipcode;
+    let pattern = /[0-9]{5}/;
+    if(zipcode.length === 5 && pattern.test(zipcode)){
+      return true;
+    } else return false;
   }
   
-  export default SearchForm;
+  return (
+    <Form onSubmit={ handleSubmit }>
+      <Form.Group>
+        <Form.Field 
+          inline
+          required
+          error={ !validZipCode() && fields.zipcode.trim().length > 0 ? true : false}>
+            <label>Zip Code</label>
+            <Input
+              name='zipcode'
+              placeholder='5 digit Zip Code'
+              value={ fields.zipcode }
+              onChange={ handleChange }
+            />
+        </Form.Field>
+        <Form.Field inline>
+          <label>Units</label>
+          <Select
+            id='unitsField'
+            name='units'
+            value={ fields.units }
+            options={ options }
+            placeholder='Units'
+            onChange={ handleChange }
+          />
+        </Form.Field>
+        <Button type='submit' content='Get Weather' disabled={!validZipCode() || fields.zipcode.length === 0 ? true : false}/>
+      </Form.Group>
+    </Form>
+  )
+}
+
+SearchForm.propTypes = {
+  getWeatherData: PropTypes.func
+}
+
+export default SearchForm;
