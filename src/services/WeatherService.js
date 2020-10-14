@@ -8,6 +8,8 @@ const requestWeatherData = (values) => {
             zip: `${values.zipcode},us`
         }
     })
+    .then((response) => response)
+    .catch((error) => error);
 }
 
 export default requestWeatherData;

@@ -17,4 +17,13 @@ describe('WeatherService tests', () => {
         expect(axios.get).toHaveBeenCalledTimes(1);
         axios.get.mockClear();
     });
+
+    it('Api call network failure', async () => {
+        const expectedData = "network error"
+        axios.get = jest.fn(() => Promise.reject("network error"));
+        let returnedData = await requestWeatherData({ units: "units", zipcode: "zip" });
+        expect(returnedData).toEqual(expectedData);
+        expect(axios.get).toHaveBeenCalledTimes(1);
+        axios.get.mockClear();
+    });
 })
