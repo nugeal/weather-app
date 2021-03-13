@@ -13,7 +13,7 @@ const WeatherApp = () => {
   const [requestError, setRequestError] = useState(undefined);
 
   const getWeatherData = (values) => {
-    requestWeatherData(values)  //requestWeatherData == fetch in react example
+    requestWeatherData(values)
       .then((response) => {
         setCurrent(response.data.current);
         setForecast(response.data.forecast);
@@ -47,7 +47,7 @@ const WeatherApp = () => {
     return dailyData.map((weatherData) => {
       return (
         <GridColumn>
-        <DayForecast currentDay={ false } current={ weatherData } convertTempAndSpeed={ convertTempAndSpeed } units={ units }/>
+          <DayForecast currentDay={ false } current={ weatherData } convertTempAndSpeed={ convertTempAndSpeed } units={ units }/>
       </GridColumn>
       )
     })
