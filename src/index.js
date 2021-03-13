@@ -2,12 +2,12 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import 'semantic-ui-css/semantic.min.css'
 import './css/index.css';
-import App from './components/App.js';
+import WeatherApp from './components/WeatherApp.js';
 import * as serviceWorker from './serviceWorker';
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <WeatherApp />
   </React.StrictMode>,
   document.getElementById('root')
 );
