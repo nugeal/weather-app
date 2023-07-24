@@ -6,6 +6,9 @@ ReactJS Single Page Application to request weather data for US zip codes and hos
 
 The static content files are stored in an S3 bucket that is configured for Static website hosting. The serverless backend is implemented with AWS API Gateway and AWS Lambda.
 
+![image](https://github.com/nugeal/weather-app/assets/20147221/1bfbbb0f-7ccf-4d8e-a63d-1105e48ca225)
+
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
