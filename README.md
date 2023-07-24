@@ -2,7 +2,7 @@
 
 ReactJS Single Page Application to request weather data for US zip codes and hosted in AWS.
 
-# Serverless Implementation
+## Serverless Implementation
 
 The static content files are stored in an S3 bucket that is configured for Static website hosting. The serverless backend is implemented with AWS API Gateway and AWS Lambda.
 
